@@ -2,7 +2,7 @@ import dbConnect from "@/lib/db";
 import { Note } from "@/models/NoteModel";
 import { NextRequest, NextResponse } from "next/server";
 
-
+//. get notes 
 export async function GET() {
     try {
         await dbConnect()
@@ -20,6 +20,7 @@ export async function GET() {
     }
 }
 
+//. create note 
 export async function POST(request: NextRequest) {
     try {
         await dbConnect()

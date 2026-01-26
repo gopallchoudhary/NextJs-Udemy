@@ -1,13 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 
+type ContactStauts = 'new' | 'read' | 'replied'
+
 interface IContact {
     name: string,
     email: string,
     subject: string,
     message: string,
-    status: {
-        enum: ['new', 'read', 'replied']
-    }
+    status: ContactStauts
 }
 
 interface IContactDocument extends IContact, Document {
@@ -48,8 +48,11 @@ const ContactSchema: Schema<IContactDocument> = new mongoose.Schema({
 
     status: {
         type: String,
-        enum: ['new', 'read', 'replied']
+        enum: ['new', 'read', 'replied'],
+        default: 'new'
     }
 }, {timestamps: true})
 
 const Contact = mongoose.models.Contact || mongoose.model<IContactDocument>("Contact", ContactSchema)
+
+export default Contact

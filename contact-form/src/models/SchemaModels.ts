@@ -1,8 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 
-type ContactStauts = 'new' | 'read' | 'replied'
+export type ContactStauts = 'new' | 'read' | 'replied';
 
-interface IContact {
+export interface IContact {
     name: string,
     email: string,
     subject: string,
@@ -10,7 +10,7 @@ interface IContact {
     status: ContactStauts
 }
 
-interface IContactDocument extends IContact, Document {
+export interface IContactDocument extends IContact, Document {
     createdAt: Date,
     updatedAt: Date
 }
@@ -51,7 +51,7 @@ const ContactSchema: Schema<IContactDocument> = new mongoose.Schema({
         enum: ['new', 'read', 'replied'],
         default: 'new'
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 const Contact = mongoose.models.Contact || mongoose.model<IContactDocument>("Contact", ContactSchema)
 
